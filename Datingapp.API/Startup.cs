@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Datingapp.API.Data;
 using Datingapp.API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,9 +36,16 @@ namespace DatingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x=>x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(opn =>
+            {
+                opn.SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddCors();  //Cors certificate is added so that angular can access the api. It is important for angular to trust web api as they are run at different ports.
             services.AddScoped<IAuthRepository, AuthRepository>(); //It is same within a request. Other functions that could have been used are 1. AddTransient() i.e, different for every controller and service 2.AddSingleton() i.e, Same for every request.
+            services.AddScoped<IDatingRepository, DatingRepository>();
+            services.AddAutoMapper(typeof (DatingRepository).Assembly);
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options=>{
                     options.TokenValidationParameters = new TokenValidationParameters()
