@@ -2,7 +2,7 @@ using System;
 
 namespace Datingapp.API.Dtos
 {
-    public class UserForListDto
+    public class UserForListDto // To get user when all the user cards are shown.
     {
         public int Id { get; set; }
         public string Username { get; set; }

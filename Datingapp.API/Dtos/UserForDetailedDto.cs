@@ -4,7 +4,7 @@ using Datingapp.API.Models;
 
 namespace Datingapp.API.Dtos
 {
-    public class UserForDetailedDto
+    public class UserForDetailedDto //To get user details when someone views a profile.
     {
         public int Id { get; set; }
         public string Username { get; set; }

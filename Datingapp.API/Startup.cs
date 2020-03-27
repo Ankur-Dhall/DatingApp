@@ -44,6 +44,7 @@ namespace DatingApp.API
             services.AddCors();  //Cors certificate is added so that angular can access the api. It is important for angular to trust web api as they are run at different ports.
             services.AddScoped<IAuthRepository, AuthRepository>(); //It is same within a request. Other functions that could have been used are 1. AddTransient() i.e, different for every controller and service 2.AddSingleton() i.e, Same for every request.
             services.AddScoped<IDatingRepository, DatingRepository>();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof (DatingRepository).Assembly);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -1,6 +1,6 @@
 namespace Datingapp.API.Dtos
 {
-    public class UserForUpdateDto
+    public class UserForUpdateDto //When user updates its profile
     {
         public string Introduction { get; set; }
         public string LookingFor { get; set; }
