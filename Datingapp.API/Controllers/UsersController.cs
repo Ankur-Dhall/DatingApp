@@ -6,6 +6,7 @@ using AutoMapper;
 using Datingapp.API.Data;
 using Datingapp.API.Dtos;
 using Datingapp.API.Helpers;
+using Datingapp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -70,6 +71,33 @@ namespace Datingapp.API.Controllers
                 return NoContent();
                 
             throw new Exception($"Updating user {id} failed on save.");
+        }
+
+        [HttpPost("{id}/like/{recepientId}")]
+        public async Task<IActionResult> LikeUser(int id, int recepientId)
+        {
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if(await _repo.GetLike(id, recepientId) != null)
+                return BadRequest("You have already liked this user.");
+
+            if(await _repo.GetUser(recepientId) == null)
+                return NotFound();
+
+            var like = new Like()
+            {
+                LikerId = id,
+                LikeeId = recepientId
+            };
+
+            _repo.Add<Like>(like);
+
+            if(await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest();
+            
         }
         
     }
