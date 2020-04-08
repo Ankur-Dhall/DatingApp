@@ -3,3 +3,4 @@ obj
 bin
 *.db
 appsettings.json
+wwwroot
