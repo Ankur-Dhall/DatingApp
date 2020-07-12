@@ -1,6 +1,6 @@
 # DatingApp
 
-##### Demo Link: https://drive.google.com/drive/folders/1R3UO0XbkqWDXL1_6ElAeIVm4ttBYI9ma
+##### Demo Link: https://drive.google.com/file/d/1OSwtQSez8ioXtU6UvM2uKVH5ZQOIIjn8/view?usp=sharing
 
 
 This is a dating app made using ASP.NET core API with Angular front end.
