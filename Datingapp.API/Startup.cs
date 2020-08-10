@@ -32,10 +32,26 @@ namespace DatingApp.API
 
         public IConfiguration Configuration { get; }
 
+        public void ConfigureDevelopmentServices(IServiceCollection services) // To be used in development mode. It uses SqlLite as database.
+        {
+            services.AddDbContext<DataContext>(x =>
+                x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            ConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)  // To be used in Production mode. It uses Sql Server as database.
+        {
+            services.AddDbContext<DataContext>(x =>
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            ConfigureServices(services);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x=>x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers().AddNewtonsoftJson(opn =>
             {
                 opn.SerializerSettings.ReferenceLoopHandling =
@@ -86,7 +102,7 @@ namespace DatingApp.API
                     });
                 });
             }
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -96,9 +112,13 @@ namespace DatingApp.API
 
             app.UseAuthorization();
 
+            app.UseDefaultFiles(); // For Publishing so that we can use angular
+            app.UseStaticFiles(); // files from wwwroot
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");  //Fallback is a controller and is used so that routing is deffered to angular.
             });
         }
     }

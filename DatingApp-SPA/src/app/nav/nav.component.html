@@ -8,7 +8,7 @@
         <a class="nav-link" [routerLink]="['/members']">Matches</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/lists']">Lists</a>
+        <a class="nav-link" [routerLink]="['/lists']">Likes</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/messages']">Messages</a>
@@ -18,19 +18,19 @@
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
           <img src="{{photoUrl || '../../assets/user.png'}}" alt="" class="mr-1">
-        Welcome {{authService.decodedToken.unique_name | titlecase}}
+        <span class="d-none d-sm-inline-block">Welcome {{authService.decodedToken.unique_name | titlecase}}</span>
       </a>
 
-      <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenuButton" *dropdownMenu>
-        <a class="dropdown-item" [routerLink]="['/member/edit']" ><i class="fa fa-user"></i>Edit Profile</a>
+      <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="dropdownMenuButton" *dropdownMenu>
+        <a class="dropdown-item" [routerLink]="['/member/edit']" ><i class="fa fa-user"></i> Edit Profile</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logOut()"><i class="fa fa-sign-out"></i>Logout</a>
+        <a class="dropdown-item" (click)="logOut()"><i class="fa fa-sign-out"></i> Logout</a>
       </div>
     </div>
   
     <form *ngIf="!loggedIn()" #loginForm = "ngForm" class="form-inline my-2 my-lg-0" (ngSubmit) = "login()">
-      <input class="form-control mr-sm-2" required type="text" name="username" placeholder="Username" [(ngModel)]="model.username">
-      <input class="form-control mr-sm-2" required type="password" name="password" placeholder="Password" [(ngModel)]="model.password">
+      <input class="form-control mr-sm-2 wid" required type="text" name="username" placeholder="Username" [(ngModel)]="model.username">
+      <input class="form-control mr-sm-2 wid" required type="password" name="password" placeholder="Password" [(ngModel)]="model.password">
       <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form>
 

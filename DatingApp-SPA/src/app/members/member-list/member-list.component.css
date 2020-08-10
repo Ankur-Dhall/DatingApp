@@ -1,0 +1,21 @@
+@media (max-width: 800px) {
+
+    
+    .btn  {
+      width:100%;
+    }
+    .btn-1 {
+        margin-left: 0px !important;
+    }
+    .btn-group {
+        float: none !important;
+        width: 100%;
+    }
+}
+
+.btn-2 {
+    border-right: 2px solid white !important;
+}
+.bt {
+    border-radius: 5px !important;
+}

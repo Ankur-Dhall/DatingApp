@@ -11,3 +11,24 @@ img {
 .dropdown a:hover {
     opacity: 0.8;
 }
+
+@media (max-width: 767px) {
+    .wid {
+        width: 37%;
+        margin-right: 0.3em;
+    }
+}
+
+@media (max-width: 329px) {
+    .wid {
+        width: 35%;
+        margin-right: 0.3em;
+    }
+}
+
+@media (max-width: 283px) {
+    .wid {
+        width: 34%;
+        margin-right: 0.3em;
+    }
+}
