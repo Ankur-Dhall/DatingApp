@@ -1,6 +1,5 @@
 # DatingApp
-## Website Link : https://ankurdating.azurewebsites.net
-##### Demo Link: https://drive.google.com/file/d/1OSwtQSez8ioXtU6UvM2uKVH5ZQOIIjn8/view?usp=sharing
+### Demo Link: https://drive.google.com/file/d/1OSwtQSez8ioXtU6UvM2uKVH5ZQOIIjn8/view?usp=sharing
 
 
 This is a dating app made using ASP.NET core API with Angular front end.
